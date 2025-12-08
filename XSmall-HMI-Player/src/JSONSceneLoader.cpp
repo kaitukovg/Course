@@ -245,6 +245,10 @@ std::vector<std::unique_ptr<VisualObject>> JSONSceneLoader::loadFromFile(
         Logger::error("Error loading JSON: " + std::string(e.what()));
     }
     
+
+    if (objects.empty()) {
+        Logger::warning("JSON file objects.json has not objects or has wrong type: " + filename);
+    }
     return objects;
 }
 
