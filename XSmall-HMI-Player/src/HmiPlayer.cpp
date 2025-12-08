@@ -71,23 +71,33 @@ bool HmiPlayer::initialize() {
     // Путь к файлу конфигурации объектов
     std::string jsonPath = projectRoot + "/objects.json";
     
-    // Проверяем, существует ли файл objects.json
+    // ПРОВЕРКА 1: Если файла objects.json не существует
     if (!std::filesystem::exists(jsonPath)) {
-        // Файл не существует - показываем пустое окно
-        Logger::info("Файл objects.json не найден. Показываю пустое окно.");
-        Logger::info("Создайте файл objects.json с конфигурацией сцены.");
-        return true; // Продолжаем запуск с пустым окном
+        Logger::info("FILW objects.json NOT FOUND. CREATING A NEW SCADA DEMO-SCENE...");
+        
+        // Создаем файл с демо-сценой
+        if (!saveSceneToJSON(jsonPath)) {
+            Logger::error("FAILED TO CREATE objects.json FILE");
+            return false;
+        }
+        
+        Logger::info("FILE objects.json SUCCESSFULLY CREATED IN: " + jsonPath);
     }
     
     // Загружаем объекты из JSON файла
-    Logger::info("Загружаю сцену из JSON: " + jsonPath);
+    Logger::info("LOADING SCENE FROM JSON: " + jsonPath);
     objects = JSONSceneLoader::loadFromFile(jsonPath, &database, &font);
     
+    // ПРОВЕРКА 2: Если файл существует, но пустой (не загружены объекты)
     if (objects.empty()) {
-        Logger::info("Из JSON не загружено ни одного объекта. Показываю пустое окно.");
-    } else {
-        Logger::info("Загружено объектов из JSON: " + std::to_string(objects.size()));
+        Logger::error("FILE objects.json EXISTS, BUT DOES NOT CONTAIN ANY OBJECTS OR EMPTY.");
+        Logger::error("EDIT FILE " + jsonPath + " AND ADD NEW OBJECTS.");
+        
+        // Очищаем окно и показываем сообщение об ошибке
+        return true; // Продолжаем запуск с пустым окном
     }
+    
+    Logger::info("LOADED OBJECTS FROM JSON: " + std::to_string(objects.size()));
     
     return true;
 }
@@ -139,6 +149,7 @@ void HmiPlayer::update() {
     static sf::Clock updateClock;
 
     // Обновляем объекты каждые 100 мс (10 раз в секунду)
+    // Не нужно обновлять каждый кадр - это излишне
     if (updateClock.getElapsedTime().asMilliseconds() > 100) {
         for (auto& obj : objects) {
             obj->update();
@@ -190,21 +201,19 @@ void HmiPlayer::render() {
     window.display();
 }
 
-// Сохраняет демо-сцену в JSON файл (утилита, вызывается вручную)
+// Сохраняет демо-сцену в JSON файл (теперь используется для автоматического создания файла)
 bool HmiPlayer::saveSceneToJSON(const std::string& filename) {
     try {
         std::ofstream file(filename);
         if (!file.is_open()) {
-            Logger::error("Не могу создать JSON файл: " + filename);
+            Logger::error("UNABLE TO CREATE JSON FILE: " + filename);
             return false;
         }
         
         // Записываем полный JSON с демо-сценой
-        // Это шаблон, который можно редактировать
         file << R"({
     "objects": [
         {
-            {
             "type": "Rectangle",
             "name": "Status Panel",
             "x": 20,
@@ -425,63 +434,7 @@ bool HmiPlayer::saveSceneToJSON(const std::string& filename) {
             "color": [255, 255, 255],
             "variable": "",
             "format": ""
-        },
-        {
-            "type": "Text",
-            "name": "Maks",
-            "content": "Maksimov postav avtomat pliz",
-            "x": 30,
-            "y": 550,
-            "fontSize": 80,
-            "color":[213, 237, 119]
-        },
-        {
-            "type": "Line",
-            "name": "liniya",
-            "x": 0,
-            "y": 765,
-            "x2": 5000,
-            "y2": 765,
-            "color": [0, 255, 26]
-        },
-        {
-            "type": "Line",
-            "name": "liniya",
-            "x": 0,
-            "y": 766,
-            "x2": 5000,
-            "y2": 766,
-            "color": [0, 255, 26]
-        },
-        {
-            "type": "Line",
-            "name": "liniya",
-            "x": 0,
-            "y": 767,
-            "x2": 5000,
-            "y2": 767,
-            "color": [0, 255, 26]
-        },
-        {
-            "type": "Line",
-            "name": "liniya",
-            "x": 0,
-            "y": 768,
-            "x2": 5000,
-            "y2": 768,
-            "color": [0, 255, 26]
-        },
-        {
-            "type": "Text",
-            "name": "765",
-            "x": 900,
-            "y": 730,
-            "content": "width: 1065",
-            "color": [255, 255, 255],
-            "fontSize": 25
         }
-            ]
-        },
     ],
     "metadata": {
         "version": "1.0",
@@ -495,14 +448,12 @@ bool HmiPlayer::saveSceneToJSON(const std::string& filename) {
 })";
         
         file.close();
-        Logger::info("Демо сцена сохранена в: " + filename);
-        Logger::info("Этот файл можно использовать как шаблон для создания своих сцен.");
+        Logger::info("DEMO-SCENE IS SAVED IN: " + filename);
+        Logger::info("THIS FILE CAN BE USED AS A TEMPLATE TO CREATE YOUR OWN SCENES.");
         return true;
         
     } catch (const std::exception& e) {
-        Logger::error("Ошибка при сохранении JSON: " + std::string(e.what()));
+        Logger::error("ERROR WHILE SAVED JSON FILE: " + std::string(e.what()));
         return false;
     }
-
 }
-
