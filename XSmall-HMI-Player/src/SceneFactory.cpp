@@ -20,7 +20,7 @@ std::vector<std::unique_ptr<VisualObject>> SceneFactory::createDemoScene(
     // Вектор для хранения объектов сцены
     std::vector<std::unique_ptr<VisualObject>> objects;
     
-    Logger::info("Создаю демо SCADA сцену");
+    Logger::info("CREATING SCADA DEMO-SCENE");
     
     // 1. Панель статуса (прямоугольник, меняющий цвет)
     auto panel = std::make_unique<Rectangle>(20, 50, 500, 200, 
@@ -64,7 +64,7 @@ std::vector<std::unique_ptr<VisualObject>> SceneFactory::createDemoScene(
     // 6. Кнопка Apply (применить)
     auto applyButton = std::make_unique<Button>(250, 200, 100, 40,
         "Apply", font, 23, sf::Color(45, 15, 127), "Apply Button", db,
-        "", []() { Logger::info("Нажата кнопка Apply"); },  // Обработчик клика
+        "", []() { Logger::info("Apply BUTTON IS CLICKED"); },  // Обработчик клика
         sf::Color::White);  
     objects.push_back(std::move(applyButton));
     
@@ -103,7 +103,7 @@ std::vector<std::unique_ptr<VisualObject>> SceneFactory::createDemoScene(
             static int status = 0;  // Статическая переменная - запоминает состояние между вызовами
             status = (status + 1) % 10;  // Увеличиваем на 1, но не больше 9 (зацикливаем)
             db->setVariable("panel_status", static_cast<double>(status));
-            Logger::info("Нажата кнопка Change Color. Статус панели изменен на: " + std::to_string(status));
+            Logger::info("BUTTON Change Color IS CLICKED. PANEL STATUS CHANGED TO: " + std::to_string(status));
         },
         sf::Color(10, 35, 79));  
     objects.push_back(std::move(statusButton));
@@ -114,7 +114,7 @@ std::vector<std::unique_ptr<VisualObject>> SceneFactory::createDemoScene(
         "", [db]() {
             double current = db->getVariable("temperature_value");
             db->setVariable("temperature_value", current + 1.0);
-            Logger::info("Температура увеличена до: " + std::to_string(current + 1.0));
+            Logger::info("TEMPERATURE INCREASED TO: " + std::to_string(current + 1.0));
         },
         sf::Color::White);
     objects.push_back(std::move(tempUpButton));
@@ -125,7 +125,7 @@ std::vector<std::unique_ptr<VisualObject>> SceneFactory::createDemoScene(
         "", [db]() {
             double current = db->getVariable("temperature_value");
             db->setVariable("temperature_value", current - 1.0);
-            Logger::info("Температура уменьшена до: " + std::to_string(current - 1.0));
+            Logger::info("TEMPERATURE DECREASED TO: " + std::to_string(current - 1.0));
         },
         sf::Color::White);  
     objects.push_back(std::move(tempDownButton));
@@ -136,7 +136,7 @@ std::vector<std::unique_ptr<VisualObject>> SceneFactory::createDemoScene(
         "", [db]() {
             double current = db->getVariable("pressure_value");
             db->setVariable("pressure_value", current + 0.5);
-            Logger::info("Давление увеличено до: " + std::to_string(current + 0.5));
+            Logger::info("PRESSURE INCREASED TO: " + std::to_string(current + 0.5));
         },
         sf::Color::White);
     objects.push_back(std::move(pressureUpButton));
@@ -147,7 +147,7 @@ std::vector<std::unique_ptr<VisualObject>> SceneFactory::createDemoScene(
         "", [db]() {
             double current = db->getVariable("pressure_value");
             db->setVariable("pressure_value", current - 0.5);
-            Logger::info("Давление уменьшено до: " + std::to_string(current - 0.5));
+            Logger::info("PRESSURE DECREASED TO: " + std::to_string(current - 0.5));
         },
         sf::Color::White);
     objects.push_back(std::move(pressureDownButton));
@@ -162,7 +162,7 @@ std::vector<std::unique_ptr<VisualObject>> SceneFactory::createDemoScene(
         font, 40, sf::Color::White, "System Subtitle", db);
     objects.push_back(std::move(subtitleText));
 
-    Logger::info("Демо сцена создана, объектов: " + std::to_string(objects.size()));
+    Logger::info("DEMO-SCENE IS CREATED: " + std::to_string(objects.size()));
     
     return objects;
 }
