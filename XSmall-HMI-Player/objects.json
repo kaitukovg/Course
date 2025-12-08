@@ -3,7 +3,7 @@
         {
             "type": "Rectangle",
             "name": "Ram",
-            "x": 845,
+            "x": 795,
             "y": 165,
             "width": 140,
             "height": 95,
@@ -12,7 +12,7 @@
         {
             "type": "Image",
             "name": "Mountain",
-            "x": 850,
+            "x": 800,
             "y": 170,
             "width": 130,
             "height": 85,
@@ -241,15 +241,6 @@
             "format": ""
         },
         {
-            "type": "Text",
-            "name": "Quote",
-            "content": "May The Force Be With You",
-            "x": 30,
-            "y": 650,
-            "fontSize": 80,
-            "color":[0, 255, 255]
-        },
-        {
             "type": "Line",
             "name": "liniya",
             "x": 0,
@@ -293,6 +284,135 @@
             "content": "width: 1065",
             "color": [255, 255, 255],
             "fontSize": 25
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": -30,
+            "y": -30,
+            "width": 300,
+            "height": 120,
+            "path":"assets/images/ChristmasTreeHorizontal.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": 260,
+            "y": -30,
+            "width": 300,
+            "height": 120,
+            "path":"assets/images/ChristmasTreeHorizontal.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": 550,
+            "y": -30,
+            "width": 300,
+            "height": 120,
+            "path":"assets/images/ChristmasTreeHorizontal.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": 840,
+            "y": -30,
+            "width": 300,
+            "height": 120,
+            "path":"assets/images/ChristmasTreeHorizontal.png"
+        },
+
+
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": -30,
+            "y": 700,
+            "width": 300,
+            "height": 120,
+            "path":"assets/images/ChristmasTreeHorizontal.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": 260,
+            "y": 700,
+            "width": 300,
+            "height": 120,
+            "path":"assets/images/ChristmasTreeHorizontal.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": 550,
+            "y": 700,
+            "width": 300,
+            "height": 120,
+            "path":"assets/images/ChristmasTreeHorizontal.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": 840,
+            "y": 700,
+            "width": 300,
+            "height": 120,
+            "path":"assets/images/ChristmasTreeHorizontal.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": -50,
+            "y": 0,
+            "width": 120,
+            "height": 300,
+            "path":"assets/images/ChristmasTreeVertical.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": -50,
+            "y": 280,
+            "width": 120,
+            "height": 300,
+            "path":"assets/images/ChristmasTreeVertical.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": -50,
+            "y": 540,
+            "width": 120,
+            "height": 300,
+            "path":"assets/images/ChristmasTreeVertical.png"
+        },
+
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": 950,
+            "y": 0,
+            "width": 120,
+            "height": 300,
+            "path":"assets/images/ChristmasTreeVertical.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": 950,
+            "y": 280,
+            "width": 120,
+            "height": 300,
+            "path":"assets/images/ChristmasTreeVertical.png"
+        },
+        {
+            "type": "Image",
+            "name": "Christmas Tree Horizontal",
+            "x": 950,
+            "y": 540,
+            "width": 120,
+            "height": 300,
+            "path":"assets/images/ChristmasTreeVertical.png"
         }
     ],
     "metadata": {
