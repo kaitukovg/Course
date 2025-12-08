@@ -482,7 +482,6 @@ bool HmiPlayer::saveSceneToJSON(const std::string& filename) {
         }
             ]
         },
-        // ... остальные объекты из демо-сцены ...
     ],
     "metadata": {
         "version": "1.0",
@@ -506,3 +505,4 @@ bool HmiPlayer::saveSceneToJSON(const std::string& filename) {
     }
 
 }
+
