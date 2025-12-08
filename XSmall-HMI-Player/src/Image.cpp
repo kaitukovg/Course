@@ -11,7 +11,7 @@ Image::Image(float x, float y, float width, float height,
       imagePath(path),                     // Путь к файлу
       textureLoaded(false) {               // Пока не загружено
     
-    std::cout << "Пробуем загрузить изображение из: " << path << std::endl;
+    std::cout << "Try to load image from: " << path << std::endl;
     
     // Пытаемся загрузить текстуру
     textureLoaded = loadTexture(path);
@@ -25,9 +25,9 @@ Image::Image(float x, float y, float width, float height,
         float scaleY = height / sprite.getLocalBounds().height;
         sprite.setScale(scaleX, scaleY);
         
-        std::cout << "Изображение загружено: " << path << std::endl;
+        std::cout << "IMAGE IS LOADED FROM: " << path << std::endl;
     } else {
-        std::cout << "Не удалось загрузить изображение: " << path << std::endl;
+        std::cout << "FAILED TO LOAD THE IMAGE: " << path << std::endl;
     }
 }
 
@@ -48,7 +48,7 @@ void Image::draw(sf::RenderWindow& window) {
         // И текст "Image not found"
         sf::Font font;
         // Пробуем загрузить шрифт для сообщения об ошибке
-        if (font.loadFromFile("assets/fonts/arial.ttf")) {
+        if (font.loadFromFile("../assets/fonts/arial.ttf")) {
             sf::Text errorText;
             errorText.setFont(font);
             errorText.setString("Image not found");
@@ -73,16 +73,16 @@ bool Image::loadTexture(const std::string& path) {
     
     // Пробуем каждый путь
     for (const auto& testPath : possiblePaths) {
-        std::cout << "Пробуем загрузить: " << testPath << std::endl;
+        std::cout << "Try to load from: " << testPath << std::endl;
         if (texture.loadFromFile(testPath)) {
             // Успешно - устанавливаем текстуру в спрайт
             sprite.setTexture(texture);
-            std::cout << "Успешно загружено из: " << testPath << std::endl;
+            std::cout << "SUCCESSFULL LOAD FROM: " << testPath << std::endl;
             return true;
         }
     }
     
     // Ни один путь не сработал
-    Logger::warning("Не удалось загрузить изображение ни по одному пути: " + path);
+    Logger::warning("FAILED TO LOAD IMAGE FROM ANY PATH: " + path);
     return false;
 }
