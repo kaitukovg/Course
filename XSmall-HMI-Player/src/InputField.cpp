@@ -43,7 +43,6 @@ void InputField::draw(sf::RenderWindow& window) {
 // Обновляем поле ввода
 void InputField::update() {
     // Обновляем текст из переменной только если поле не активно
-    // (когда пользователь вводит, мы не хотим перезаписывать его ввод)
     if (!variableName.empty() && database && !isActive) {
         double value = database->getVariable(variableName);
         inputText = std::to_string(value);  // Преобразуем число в строку
@@ -129,4 +128,5 @@ bool InputField::contains(float pointX, float pointY) const {
     // Проверяем, находится ли точка внутри прямоугольника фона
     return pointX >= x && pointX <= x + background.getSize().x &&
            pointY >= y && pointY <= y + background.getSize().y;
+
 }
