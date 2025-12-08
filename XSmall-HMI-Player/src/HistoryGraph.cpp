@@ -40,7 +40,6 @@ void HistoryGraph::draw(sf::RenderWindow& window) {
 void HistoryGraph::update() {
     // Обновление данных происходит через подписку на VariableDatabase
     // Фактическое обновление графика (перерисовка) делается в drawGraph()
-    // Здесь можно было бы что-то делать, но пока просто оставляем пустым
 }
 
 // Рисует сетку графика
@@ -101,4 +100,5 @@ void HistoryGraph::drawGraph(sf::RenderWindow& window) {
             }
         }
     }
+
 }
