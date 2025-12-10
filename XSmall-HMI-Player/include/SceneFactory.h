@@ -15,11 +15,9 @@ namespace sf {
 }
 
 // Фабрика сцен - создает наборы визуальных объектов
-// Раньше использовалась для создания демо-сцены, сейчас для загрузки из JSON
 
 class SceneFactory {
 public:
-    // Загружает сцену из файла (устаревший метод, теперь используется JSONSceneLoader)
     static std::vector<std::unique_ptr<VisualObject>> loadFromFile(
         const std::string& filename, 
         VariableDatabase* db,
@@ -30,5 +28,6 @@ public:
         VariableDatabase* db,
         sf::Font* font);
 };
+
 
 #endif
