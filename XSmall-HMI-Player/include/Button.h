@@ -38,7 +38,7 @@ private:
     std::function<void()> onClick;
 
 public:
-    // Конструктор с кучей параметров
+    // Конструктор параметрами
     Button(float x, float y, float width, float height,
            const std::string& buttonText, sf::Font* font, unsigned int fontSize,
            const sf::Color& color, const std::string& name, VariableDatabase* db,
@@ -55,5 +55,6 @@ public:
     void setOnClick(std::function<void()> onClickFunc);  // Устанавливает обработчик клика
     void setTextColor(const sf::Color& color);  // Меняет цвет текста
 };
+
 
 #endif
