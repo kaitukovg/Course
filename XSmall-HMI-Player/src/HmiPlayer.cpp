@@ -149,7 +149,6 @@ void HmiPlayer::update() {
     static sf::Clock updateClock;
 
     // Обновляем объекты каждые 100 мс (10 раз в секунду)
-    // Не нужно обновлять каждый кадр - это излишне
     if (updateClock.getElapsedTime().asMilliseconds() > 100) {
         for (auto& obj : objects) {
             obj->update();
@@ -201,7 +200,6 @@ void HmiPlayer::render() {
     window.display();
 }
 
-// Сохраняет демо-сцену в JSON файл (теперь используется для автоматического создания файла)
 bool HmiPlayer::saveSceneToJSON(const std::string& filename) {
     try {
         std::ofstream file(filename);
@@ -457,3 +455,4 @@ bool HmiPlayer::saveSceneToJSON(const std::string& filename) {
         return false;
     }
 }
+
