@@ -32,8 +32,9 @@ public:
     void update();        // Обновление состояния объектов
     void render();        // Отрисовка объектов
     
-    // Сохраняет демо-сцену в JSON файл (утилита для создания примера)
+    // Сохраняет демо-сцену в JSON файл
     bool saveSceneToJSON(const std::string& filename);
 };
+
 
 #endif
